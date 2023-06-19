@@ -14,14 +14,20 @@ class ViewController: UIViewController {
     // 用户正在输入中
     var userIsInTheMiddOfTyping: Bool = false
 
+    // 计算器模型：计算器大脑
+    private var brain = CalculatorBrain()
+    
     // 数字按键 触摸事件
     @IBAction func touchDigit(_ sender: UIButton) {
+        // 输入的数字
         let digit = (sender.titleLabel?.text)!
         
+        // 正在输入中，那么当前输入的数字自动拼接至当前显示内容的尾部
         if (userIsInTheMiddOfTyping) {
             let textCurrentlyInDisplay = display.text!
             display.text = textCurrentlyInDisplay + digit
         }
+        // 否则，将当前显示的内容更改为当前输入的数字
         else {
             display.text = digit
             userIsInTheMiddOfTyping = true
@@ -41,20 +47,17 @@ class ViewController: UIViewController {
 
     // 运算符 触摸事件
     @IBAction func performOperation(_ sender: UIButton) {
-        userIsInTheMiddOfTyping = false
+        // 如果当前为用户正在输入的过程中，那么设置操作数为当前显示的内容
+        if (userIsInTheMiddOfTyping) {
+            brain.setOperand(displayValue)
+            userIsInTheMiddOfTyping = false
+        }
+        // 如果有运算符，那么使用运算符进行计算
         if let mathmaticalSymbol = sender.titleLabel?.text {
-            switch mathmaticalSymbol {
-            case "π":
-                // display.text = "\(Double.pi)"
-                // display.text = String(Double.pi)
-                displayValue = Double.pi
-            case "√":
-                // let operand = Double(display.text!)!
-                // display.text = String(sqrt(operand))
-                displayValue = sqrt(displayValue)
-            default:
-                break
-            }
+            brain.performOperation(mathmaticalSymbol)
+        }
+        if let result = brain.result {
+            displayValue = result
         }
     }
     
