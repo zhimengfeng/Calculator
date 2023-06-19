@@ -13,23 +13,44 @@ struct CalculatorBrain {
     // 累加器
     private var accumulator: Double?
     
+    //二元运算等待操作缓存
+    private var pbo: PendingBinaryOperation?
+    
+    // 运算符与运算规则的字典明细
     private var operations: Dictionary<String, Operation> = [
         "π": .constant(Double.pi),
         "e": .constant(M_E),
         "√": .unaryOperation(sqrt),
         "cos": .unaryOperation(cos),
-        "±": .unaryOperation(changeSign)
+        "±": .unaryOperation(changeSign),
+        "×": .binaryOperation(multiply),
+        "=": .equals
     ]
     
     // 执行计算
     mutating func performOperation(_ symbol: String) {
+        // 首先根据操作符，去字典中获取操作规则明细
         if let operation = operations[symbol] {
             switch operation {
+            // 常量
             case .constant(let value):
                 accumulator = value
+            // 一元运算符
             case .unaryOperation(let function):
                 if accumulator != nil {
                     accumulator = function(accumulator!)
+                }
+            // 二元运算符
+            case .binaryOperation(let function):
+                if accumulator != nil {
+                    pbo = PendingBinaryOperation(function: function, firstOperand: accumulator!)
+                    accumulator = nil
+                }
+            // 等于运算符
+            case .equals:
+                if (pbo != nil && accumulator != nil) {
+                    accumulator = pbo?.perform(with: accumulator!)
+                    pbo = nil
                 }
             }
         
@@ -54,6 +75,22 @@ struct CalculatorBrain {
         case constant(Double)
         // 一元运算符
         case unaryOperation((Double) -> Double)
+        // 二元运算符
+        case binaryOperation((Double, Double) -> Double)
+        // 等于号
+        case equals
+    }
+    
+    
+    /// 二元运算等待操作结构体
+    /// 用于进行二元运算时，对 首位操作数 和 操作方法 的缓存
+    private struct PendingBinaryOperation {
+        let function: (Double, Double) -> Double
+        let firstOperand: Double
+        
+        func perform(with secondOperand: Double) -> Double {
+            return function(firstOperand, secondOperand)
+        }
     }
 }
 
@@ -62,4 +99,12 @@ struct CalculatorBrain {
 /// - Returns: 对操作数取反后的值
 private func changeSign(operand: Double) -> Double {
     return -operand
+}
+
+/// 乘法运算
+/// - Parameter op1: 操作数一
+/// - Parameter op2: 操作数二
+/// - Returns: 乘法运算后的值
+private func multiply(op1: Double, op2: Double) -> Double {
+    return op1 * op2
 }
