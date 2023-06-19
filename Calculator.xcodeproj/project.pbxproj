@@ -99,13 +99,11 @@
 		FE5AFAEF2A3D5F1C00B66403 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
-				FE5AFAF02A3D5F1C00B66403 /* AppDelegate.swift */,
 				FE5AFAF22A3D5F1C00B66403 /* SceneDelegate.swift */,
 				FE5AFAF42A3D5F1C00B66403 /* ViewController.swift */,
 				FE5AFAF62A3D5F1C00B66403 /* Main.storyboard */,
-				FE5AFAF92A3D5F1D00B66403 /* Assets.xcassets */,
-				FE5AFAFB2A3D5F1D00B66403 /* LaunchScreen.storyboard */,
 				FE5AFAFE2A3D5F1D00B66403 /* Info.plist */,
+				FE5AFB222A3D6EF800B66403 /* Supporting Files */,
 			);
 			path = Calculator;
 			sourceTree = "<group>";
@@ -125,6 +123,16 @@
 				FE5AFB132A3D5F1D00B66403 /* CalculatorUITestsLaunchTests.swift */,
 			);
 			path = CalculatorUITests;
+			sourceTree = "<group>";
+		};
+		FE5AFB222A3D6EF800B66403 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FE5AFAF02A3D5F1C00B66403 /* AppDelegate.swift */,
+				FE5AFAF92A3D5F1D00B66403 /* Assets.xcassets */,
+				FE5AFAFB2A3D5F1D00B66403 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -437,6 +445,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5TD87UYNRH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Calculator/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -444,6 +453,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -464,6 +474,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5TD87UYNRH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Calculator/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -471,6 +482,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
