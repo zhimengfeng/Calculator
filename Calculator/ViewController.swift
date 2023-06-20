@@ -29,7 +29,8 @@ class ViewController: UIViewController {
         }
         // 否则，将当前显示的内容更改为当前输入的数字
         else {
-            display.text = digit
+            // 小数点特殊处理：当无显示内容直接输入小数点时，前部自动拼接数字零
+            display.text = "." == digit ? "0." : digit
             userIsInTheMiddOfTyping = true
         }
     }
