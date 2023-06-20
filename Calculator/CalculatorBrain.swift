@@ -22,8 +22,14 @@ struct CalculatorBrain {
         "e": .constant(M_E),
         "√": .unaryOperation(sqrt),
         "cos": .unaryOperation(cos),
-        "±": .unaryOperation(changeSign),
-        "×": .binaryOperation(multiply),
+        "±": .unaryOperation({ -$0 }),
+        // "×": .binaryOperation({(op1: Double, op2: Double) -> Double in return op1 * op2 }),
+        // "×": .binaryOperation({(op1, op2) in return op1 * op2 }),
+        // "×": .binaryOperation({(op1, op2) in op1 * op2 }),
+        "+": .binaryOperation({ $0 + $1 }),
+        "−": .binaryOperation({ $0 - $1 }),
+        "×": .binaryOperation({ $0 * $1 }),
+        "÷": .binaryOperation({ $0 / $1 }),
         "=": .equals
     ]
     
@@ -92,19 +98,4 @@ struct CalculatorBrain {
             return function(firstOperand, secondOperand)
         }
     }
-}
-
-/// 值取反
-/// - Parameter operand: 操作数
-/// - Returns: 对操作数取反后的值
-private func changeSign(operand: Double) -> Double {
-    return -operand
-}
-
-/// 乘法运算
-/// - Parameter op1: 操作数一
-/// - Parameter op2: 操作数二
-/// - Returns: 乘法运算后的值
-private func multiply(op1: Double, op2: Double) -> Double {
-    return op1 * op2
 }
